@@ -1,5 +1,6 @@
 const GameState = Object.freeze({
     WELCOMING:   Symbol("welcoming"),
+    INITIAL: Symbol("initial"),
     FLAT:  Symbol("flat"),
     WAIT: Symbol("wait"),
     MANSION: Symbol("mansion"),
@@ -17,8 +18,16 @@ module.exports = class Game{
         let sReply = "";
         switch(this.stateCur){
             case GameState.WELCOMING:
-                sReply = "It is a dark and rainy night. Bang! You have a flat tire. Too bad you don't have a spare. Do you wait or go to the spooky mansion for help?";
-                this.stateCur = GameState.FLAT;
+                sReply = "Welcome to choose path to your Destiny. Write play to start the game";
+                if(sInput.toLowerCase().match("play")){
+                this.stateCur = GameState.INITIAL;
+                }
+                else{
+                    this.stateCur = GameState.WELCOMING;
+                }
+                break;
+            case GameState.INITIAL:
+                sReply = "After waking up from the dream you are at dark road. You don't have any other way to go instead of left and right. Which way you want to go? Make your decision left or right!!!";
                 break;
             case GameState.FLAT:
                 if(sInput.toLowerCase().match("wait")){
