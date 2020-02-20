@@ -1,1 +1,1 @@
-web: node register.js "./index.js"
+web: npm start
